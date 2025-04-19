@@ -1,0 +1,45 @@
+<?php
+// ફાઈલ શરૂમાં JSON હેડર સેટ કરો
+header("Content-Type: application/json");
+
+// ફોર્મથી મેળવેલા ડેટાને POST દ્વારા સાફ કરો
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
+    $lastName  = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING);
+    $email     = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $store     = filter_input(INPUT_POST, 'store', FILTER_SANITIZE_STRING);
+    $message   = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
+
+    // સ્ટોરની પસંદગી અનુસાર ઈમેઈલ સરનામું નક્કી કરો
+    if ($store === 'portland') {
+        $to = "aarti.thevisiontech@gmail.com";
+    } elseif ($store === 'windham') {
+        $to = "aarti3way@gmail.com";
+    } else {
+        echo json_encode(['success' => false, 'message' => 'અમાન્ય સ્ટોર પસંદગી.']);
+        exit;
+    }
+
+    // ઈમેઈલનું વિષય અને મેસેજ તૈયાર કરો
+    $subject = "Contact Form Submission from " . ucfirst($store) . " Store";
+    $body = "Name: $firstName $lastName\n";
+    $body .= "Email: $email\n";
+    $body .= "Store: $store\n";
+    $body .= "Message: $message\n";
+
+    // ઈમેઈલ હેડર્સ સેટ કરો
+    // ધ્યાન આપો: From ફિલ્ડમાં તમારા ડોમેનનું ઈમેઈલ સરનામું હોવું જોઈએ
+    $headers = "From: webmaster@example.com\r\n" .
+               "Reply-To: $email\r\n" .
+               "X-Mailer: PHP/" . phpversion();
+
+    // ઈમેઈલ મોકલવાનો પ્રયાસ કરો
+    if (mail($to, $subject, $body, $headers)) {
+         echo json_encode(['success' => true, 'message' => 'Email સફળતાપૂર્વક મોકલાયું.']);
+    } else {
+         echo json_encode(['success' => false, 'message' => 'Email મોકલવામાં સમસ્યા.']);
+    }
+} else {
+    echo json_encode(['success' => false, 'message' => 'અમાન્ય રિક્વેસ્ટ.']);
+}
+?>

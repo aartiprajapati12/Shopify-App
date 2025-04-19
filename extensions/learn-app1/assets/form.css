@@ -1,0 +1,172 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-row {
+            margin-bottom: 20px;
+        }
+        .form-row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .form-col {
+            float: left;
+            width: 48%;
+            margin-right: 4%;
+        }
+        .form-col:last-child {
+            margin-right: 0;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0052a3;
+        }
+        .success-message {
+            display: none;
+            color: green;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .error-message {
+            display: none;
+            color: red;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        /* Product List Styling */
+        .category-header {
+            background-color: #f8f8f8;
+            padding: 10px 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+            margin-bottom: 0;
+            font-size: 18px;
+        }
+        
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .product-table tr {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .product-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .product-table th {
+            text-align: left;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            background-color: #f8f8f8;
+        }
+        
+        .product-table td {
+            padding: 10px 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .product-name-header {
+            width: 70%;
+        }
+        
+        .price-header {
+            width: 15%;
+        }
+        
+        .select-header {
+            width: 15%;
+        }
+        
+        .select-column {
+            text-align: center;
+        }
+        
+        .price-column {
+            font-weight: bold;
+        }
+        
+        .product-name {
+            font-size: 14px;
+        }
+        
+        .product-checkbox {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .search-box {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .search-box input {
+            padding-left: 35px;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 13px;
+            color: #999;
+        }
+        
+        .submit-row {
+            margin-top: 30px;
+            text-align: right;
+        }
+        
+        .loading-message {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        #hidden-product-fields {
+            display: none;
+        }

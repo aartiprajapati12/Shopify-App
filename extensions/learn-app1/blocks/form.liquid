@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Form</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f8f8;
+    }
+    .form-container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    textarea {
+      height: 150px;
+      resize: vertical;
+    }
+    button {
+      background-color: #0066cc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #0052a3;
+    }
+    .response {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <form id="contactForm">
+      <input type="text" name="firstName" placeholder="First Name" required>
+      <input type="text" name="lastName" placeholder="Last Name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <select name="store" required>
+        <option value="" disabled selected>Select Store</option>
+        <option value="portland">Portland</option>
+        <option value="windham">Windham</option>
+      </select>
+      <textarea name="message" placeholder="Your message" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <div class="response" id="response"></div>
+  </div>
+
+  <script>
+    // ફોર્મ સબમિશનને AJAX દ્વારા મોકલો
+    $('#contactForm').on('submit', function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: 'send_email.php',  // PHP સ્ક્રિપ્ટનું નામ
+        type: 'POST',
+        data: $(this).serialize(),
+        dataType: 'json',
+        success: function(response) {
+          if (response.success) {
+            $('#response').html('<p style="color: green;">' + response.message + '</p>');
+          } else {
+            $('#response').html('<p style="color: red;">' + response.message + '</p>');
+          }
+        },
+        error: function(xhr, status, error) {
+          $('#response').html('<p style="color: red;">Email મોકલવામાં ભૂલ, ફરી પ્રયત્ન કરો.</p>');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
