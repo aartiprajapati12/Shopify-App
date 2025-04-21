@@ -1,6 +1,6 @@
 <?php
 echo "hello world";
-die();
+die;
 
 include "include/db.php";
 include "include/shopify.php";
